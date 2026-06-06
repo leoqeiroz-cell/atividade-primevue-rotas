@@ -1,0 +1,20 @@
+services:
+  primeshop-web:
+    build: .
+    container_name: primeshop-web
+    ports:
+      - "8080:80"
+    networks:
+      - primeshop-net
+    volumes:
+      - primeshop-nginx-cache:/var/cache/nginx
+      - primeshop-nginx-logs:/var/log/nginx
+    restart: unless-stopped
+
+networks:
+  primeshop-net:
+    driver: bridge
+
+volumes:
+  primeshop-nginx-cache:
+  primeshop-nginx-logs:
