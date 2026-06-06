@@ -8,6 +8,8 @@ nuvem, PaaS, escalabilidade, elasticidade e responsabilidade compartilhada.
 A aplicacao usada na simulacao e a **PrimeShop**, uma vitrine web criada com Vue
 3, PrimeVue, Tailwind CSS e Vue Router.
 
+Nome sugerido para o repositorio: `psc-docker-cloud-primeshop`.
+
 ## O que o projeto demonstra
 
 - Dockerfile funcional com imagens oficiais `node:20-alpine` e `nginx:1.27-alpine`.
