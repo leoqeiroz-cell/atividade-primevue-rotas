@@ -26,3 +26,7 @@ a {
 .p-breadcrumb {
   border-radius: 8px;
 }
+
+.p-password.p-invalid input {
+  border-color: #ef4444;
+}

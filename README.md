@@ -6,9 +6,10 @@ containerizada com Docker, relacionando a entrega aos conceitos de computacao em
 nuvem, PaaS, escalabilidade, elasticidade e responsabilidade compartilhada.
 
 A aplicacao usada na simulacao e a **PrimeShop**, uma vitrine web criada com Vue
-3, PrimeVue, Tailwind CSS e Vue Router.
+3, PrimeVue, Tailwind CSS, Vue Router, Pinia e Vuelidate.
 
 Nome sugerido para o repositorio: `psc-docker-cloud-primeshop`.
+Nome sugerido para esta etapa: `atividade-05-vuelidate-pinia-primeshop`.
 
 ## O que o projeto demonstra
 
@@ -22,6 +23,10 @@ Nome sugerido para o repositorio: `psc-docker-cloud-primeshop`.
 
 - Rotas publicas de consumidor: vitrine, detalhes do produto e checkout.
 - Layouts separados para consumidor e admin.
+- Autenticacao centralizada em uma `authStore` com Pinia, contendo usuario, token,
+  estado autenticado e actions simuladas de login, registro e logout.
+- Formulario de login e criacao de conta com PrimeVue, Tailwind CSS, Vuelidate,
+  feedback por campo, loading nos botoes e mensagens Toast.
 - Guards com `beforeEach` para checkout autenticado e area admin restrita ao papel `ADMIN`.
 - Admin com rotas filhas, menu lateral, breadcrumbs dinamicos, DataTable de produtos e relatorios.
 
@@ -32,7 +37,12 @@ npm install
 npm run dev
 ```
 
-Use os botoes da tela de login para simular um usuario consumidor ou admin.
+Credenciais de teste:
+
+```text
+Cliente: cliente@primeshop.com / 123456
+Admin: admin@primeshop.com / admin123
+```
 
 ## Como executar com Docker
 
@@ -63,4 +73,7 @@ O arquivo `docker-compose.yml` publica a porta `8080:80`, cria a rede
 - `Dockerfile`: build da aplicacao Vue e publicacao com Nginx.
 - `docker-compose.yml`: simulacao de porta, rede e volumes persistentes.
 - `nginx.conf`: configuracao do servidor web para a SPA.
+- `src/store/auth.js`: store Pinia de autenticacao.
+- `src/views/LoginView.vue`: formularios de login e registro com Vuelidate.
+- `RELATORIO_ATIVIDADE05_AUTH_PINIA_VUELIDATE.md`: relatorio tecnico da Atividade 05.
 - `RELATORIO_CLOUD_DOCKER.md`: relatorio tecnico da atividade.

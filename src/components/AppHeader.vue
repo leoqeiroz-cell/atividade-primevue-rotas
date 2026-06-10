@@ -4,10 +4,11 @@ import Button from 'primevue/button';
 import Badge from 'primevue/badge';
 import { computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { authState, logout } from '../store/auth';
+import { useAuthStore } from '../store/auth';
 import { cartCount } from '../store/cart';
 
 const router = useRouter();
+const authStore = useAuthStore();
 
 const menuItems = computed(() => [
   {
@@ -28,9 +29,9 @@ const menuItems = computed(() => [
 ]);
 
 function handleAuthClick() {
-  if (authState.isAuthenticated) {
-    logout();
-    router.push({ name: 'home' });
+  if (authStore.isAuthenticated) {
+    authStore.logout();
+    router.push({ name: 'login' });
     return;
   }
 
@@ -55,10 +56,10 @@ function handleAuthClick() {
         <div class="flex items-center gap-3">
           <div class="hidden text-right text-sm sm:block">
             <p class="font-medium text-slate-700">
-              {{ authState.user?.name || 'Visitante' }}
+              {{ authStore.user?.name || 'Visitante' }}
             </p>
             <p class="text-xs text-slate-500">
-              {{ authState.user?.role === 'ADMIN' ? 'Equipe da loja' : authState.user?.role ? 'Cliente logado' : 'Navegando sem login' }}
+              {{ authStore.user?.role === 'ADMIN' ? 'Equipe da loja' : authStore.user?.role ? 'Cliente logado' : 'Navegando sem login' }}
             </p>
           </div>
           <div class="relative">
@@ -71,8 +72,8 @@ function handleAuthClick() {
             />
           </div>
           <Button
-            :label="authState.isAuthenticated ? 'Sair' : 'Entrar'"
-            :icon="authState.isAuthenticated ? 'pi pi-sign-out' : 'pi pi-sign-in'"
+            :label="authStore.isAuthenticated ? 'Sair' : 'Entrar'"
+            :icon="authStore.isAuthenticated ? 'pi pi-sign-out' : 'pi pi-sign-in'"
             severity="secondary"
             outlined
             @click="handleAuthClick"
